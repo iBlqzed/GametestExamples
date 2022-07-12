@@ -6,7 +6,7 @@ import { world } from "mojang-minecraft";
  * @param {number} tick Time in ticks until the callback runs
  * @param {boolean} loop Whether or not the code should loop or not
  */
-export function setTickInterval(callback, tick, loop = false) {
+export function setTickTimeout(callback, tick, loop = false) {
     let callbackTick = 0
     const tE = world.events.tick.subscribe((data) => {
         if (callbackTick === 0) callbackTick = data.currentTick + tick

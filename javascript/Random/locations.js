@@ -4,7 +4,7 @@ export const locationFunctions = {
     /**
      * Converts a location to a block location
      * @param {Location} loc The BlockLocation of the Location
-     * @returns {BlockLocation}
+     * @returns {BlockLocation} BlockLocation from the location
      */
     locationToBlockLocation(loc) {
         return new BlockLocation(
@@ -16,7 +16,7 @@ export const locationFunctions = {
     /**
      * Converts a block location to a location
      * @param {BlockLocation} loc The Location of the BlockLocation
-     * @returns {Location}
+     * @returns {Location} Location from the block location
      */
     blockLocationToLocation(loc) {
         return new Location(

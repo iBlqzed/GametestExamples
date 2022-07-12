@@ -6,13 +6,17 @@ import { ActionFormData, ActionFormResponse } from "mojang-minecraft-ui";
  */
 export class ActionForm {
     /**
+     * A new ActionForm!
+     */
+    constructor() { }
+    /**
      * The actual form
      */
     protected form = new ActionFormData()
     /**
      * The form's title
      */
-    title: string = 'Action Form'
+    title: string = 'GUI'
     /**
      * The form's body
      */
@@ -23,8 +27,9 @@ export class ActionForm {
      * @param {string} iconPath The icon path for the button
      * @example .addButton('Diamond Sword!', 'textures/items/diamond_sword.png')
      */
-    addButton(text: string, iconPath?: string) {
+    addButton(text: string, iconPath?: string): ActionForm {
         this.form.button(text, iconPath)
+        return this
     }
     /**
      * Show the form to a player
@@ -37,6 +42,6 @@ export class ActionForm {
     show(player: Player, callback: (result: ActionFormResponse) => void) {
         this.form.title(this.title)
         this.form.body(this.body)
-        this.form.show(player).then(result => callback(result)).catch(error => console.warn(String(error)))
+        this.form.show(player).then(result => callback(result)).catch(e => console.warn(String(e)))
     }
 }

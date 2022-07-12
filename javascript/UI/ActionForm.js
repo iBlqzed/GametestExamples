@@ -5,17 +5,20 @@ import { ActionFormData, ActionFormResponse } from "mojang-minecraft-ui";
  * Create a new ActionForm
  */
 export class ActionForm {
+    /**
+     * A new ActionForm!
+     */
     constructor() {
         /**
          * ...dont mind this
          */
         this.form = new ActionFormData()
         /**
-         * The form's title
+         * @type {string} The form's title
          */
-        this.title = 'Action Form'
+        this.title = 'GUI'
         /**
-         * The form's body
+         * @type {string} The form's body
          */
         this.body = null
     }
