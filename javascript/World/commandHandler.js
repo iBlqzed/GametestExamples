@@ -38,6 +38,6 @@ world.events.beforeChat.subscribe(data => {
  * @param {Player} player Player to send the message to
  * @example broadcastMessage('This message was sent to everyone!')
  */
-export function broadcastMessage(message, player = null) {
+function broadcastMessage(message, player = null) {
     player ? player.runCommand(`tellraw @s ${JSON.stringify({ rawtext: [{ text: message }] })}`) : world.getDimension('overworld').runCommand(`tellraw @a ${JSON.stringify({ rawtext: [{ text: message }] })}`)
 }
