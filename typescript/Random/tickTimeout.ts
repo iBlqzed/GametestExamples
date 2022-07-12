@@ -16,8 +16,8 @@ export function setTickInterval(callback: () => void, tick: number, loop?: boole
                 if (loop) callbackTick = data.currentTick + tick
                 else world.events.tick.unsubscribe(tE)
             }
-        } catch (error) {
-            console.warn(`${error} : ${error.stack}`)
+        } catch (e) {
+            console.warn(`${e} : ${e.stack}`)
         }
     })
 }
