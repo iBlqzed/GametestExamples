@@ -7,13 +7,13 @@ import { world } from "mojang-minecraft";
  * @param {boolean} loop Whether or not the code should loop or not
  */
 export function setTickTimeout(callback: () => void, tick: number, loop?: boolean) {
-    let callbackTick = 0
+    let cT = 0
     const tE = world.events.tick.subscribe((data) => {
-        if (callbackTick === 0) callbackTick = data.currentTick + tick
+        if (cT === 0) cT = data.currentTick + tick
         try {
-            if (callbackTick > data.currentTick) {
+            if (cT > data.currentTick) {
                 callback()
-                if (loop) callbackTick = data.currentTick + tick
+                if (loop) cT = data.currentTick + tick
                 else world.events.tick.unsubscribe(tE)
             }
         } catch (e) {

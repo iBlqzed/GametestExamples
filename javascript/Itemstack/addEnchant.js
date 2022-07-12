@@ -10,8 +10,8 @@ export function addEnchant(item, enchant) {
     /**
      * @type {ItemEnchantsComponent} The enchantment component of the item
      */
-    const enchComp = item.getComponent('enchantments'), enchantList = enchComp.enchantments
-    const returnValue = enchantList.addEnchantment(enchant)
-    enchComp.enchantments = enchantList
-    return returnValue
+    const eC = item.getComponent('enchantments'), eL = eC.enchantments
+    const rV = eL.addEnchantment(enchant)
+    eC.enchantments = eL
+    return rV
 }

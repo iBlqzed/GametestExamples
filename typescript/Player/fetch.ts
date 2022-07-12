@@ -6,6 +6,6 @@ import { Player, world } from "mojang-minecraft";
  * @returns {Player} The player class
  */
 export function fetch(playerName: string): Player {
-    for (const player of world.getPlayers()) if ((player.name || player.nameTag) === playerName) return player
+    for (const pL of world.getPlayers()) if ((pL.name || pL.nameTag) === playerName) return pL
     return undefined
 }

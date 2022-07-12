@@ -9,7 +9,7 @@ export function removeEnchant(item, enchant) {
     /**
      * @type {ItemEnchantsComponent} The enchantment component of the item
      */
-    const enchComp = item.getComponent('enchantments'), enchantList = enchComp.enchantments
-    enchantList.removeEnchantment(enchant)
-    enchComp.enchantments = enchantList
+    const eC = item.getComponent('enchantments'), eL = eC.enchantments
+    eL.removeEnchantment(enchant)
+    eC.enchantments = eL
 }

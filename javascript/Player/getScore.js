@@ -9,9 +9,9 @@ import { Entity, world } from "mojang-minecraft";
  */
 export function getScore(objective, target, useZero = false) {
     try {
-        const obj = world.scoreboard.getObjective(objective)
-        if (typeof target == 'string') return obj.getScore(obj.getParticipants().find(v => v.displayName == target))
-        return obj.getScore(target.scoreboard)
+        const oB = world.scoreboard.getObjective(objective)
+        if (typeof target == 'string') return oB.getScore(oB.getParticipants().find(pT => pT.displayName == target))
+        return oB.getScore(target.scoreboard)
     } catch {
         return useZero ? 0 : NaN
     }

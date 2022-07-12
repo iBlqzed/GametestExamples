@@ -9,10 +9,10 @@ import { Entity, world } from "mojang-minecraft";
  */
 export function getScore(objective: string, target: Entity | string, useZero?: boolean): number {
     try {
-        const obj = world.scoreboard.getObjective(objective)
+        const oB = world.scoreboard.getObjective(objective)
         //@ts-ignore
-        if (typeof target == 'string') return obj.getScore(obj.getParticipants().find(v => v.displayName == target))
-        return obj.getScore(target.scoreboard)
+        if (typeof target == 'string') return oB.getScore(oB.getParticipants().find(pT => pT.displayName == target))
+        return oB.getScore(target.scoreboard)
     } catch {
         return useZero ? 0 : NaN
     }

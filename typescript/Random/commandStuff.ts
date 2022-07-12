@@ -8,10 +8,10 @@ import { Entity, world } from "mojang-minecraft";
  */
 export function runCommand(cmd: string, executor?: Entity): { error: boolean, data: any } {
     try {
-        let returnValue: any
-        if (executor) returnValue = executor.runCommand(cmd)
-        else returnValue = world.getDimension('overworld').runCommand(cmd)
-        return { error: false, data: returnValue }
+        let rV: any
+        if (executor) rV = executor.runCommand(cmd)
+        else rV = world.getDimension('overworld').runCommand(cmd)
+        return { error: false, data: rV }
     } catch {
         return { error: true, data: undefined }
     }
@@ -29,12 +29,12 @@ export function runCommand(cmd: string, executor?: Entity): { error: boolean, da
  */
 export function runCommands(commands: string[], executor?: Entity): { error: boolean } {
     try {
-        const conditionalRegex = /^%/;
-        if (conditionalRegex.test(commands[0])) throw new TypeError('[Server] >> First command in runCommands function can not be conditional')
+        const cR = /^%/;
+        if (cR.test(commands[0])) throw new TypeError('[Server] >> First command in runCommands function can not be conditional')
         let cmdError = false
         for (const cmd of commands) {
-            if (cmdError && conditionalRegex.test(cmd)) continue
-            cmdError = runCommand(cmd.replace(conditionalRegex, ''), executor).error
+            if (cmdError && cR.test(cmd)) continue
+            cmdError = runCommand(cmd.replace(cR, ''), executor).error
         }
         return { error: false }
     } catch (error) {

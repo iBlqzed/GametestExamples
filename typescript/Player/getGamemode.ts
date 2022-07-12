@@ -23,10 +23,10 @@ export function getGamemode(player: Player): "survival" | "creative" | "adventur
  */
 function runCommand(cmd: string, executor?: Entity): { error: boolean, data: any } {
     try {
-        let returnValue: any
-        if (executor) returnValue = executor.runCommand(cmd)
-        else returnValue = world.getDimension('overworld').runCommand(cmd)
-        return { error: false, data: returnValue }
+        let rV: any
+        if (executor) rV = executor.runCommand(cmd)
+        else rV = world.getDimension('overworld').runCommand(cmd)
+        return { error: false, data: rV }
     } catch {
         return { error: true, data: undefined }
     }
