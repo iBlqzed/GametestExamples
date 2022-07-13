@@ -1,5 +1,7 @@
 import { Player, world } from "mojang-minecraft";
 
+world.events.worldInitialize.subscribe(() => { for (const pL of world.getPlayers()) pNA.push(pL.name) })
+
 /**
  * Run code when a player joins
  * @param {(player: Player) => void} callback Code to run when a player joins
