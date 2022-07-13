@@ -6,6 +6,7 @@ import { Entity, world } from "mojang-minecraft";
  * @param {Entity|string} target The entity, player, or fake player to get the score of
  * @param {boolean} useZero Specifies whether to return NaN or 0 if an error is thrown
  * @returns {number} The target's score, or NaN / 0 if error
+ * @example getScore('Money', player, true) //Returns the value of the scoreboard "Money", or 0 if error
  */
 export function getScore(objective, target, useZero = false) {
     try {

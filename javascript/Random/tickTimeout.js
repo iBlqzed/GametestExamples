@@ -5,6 +5,9 @@ import { world } from "mojang-minecraft";
  * @param {() => void} callback Code you want to execute when the delay is finished
  * @param {number} tick Time in ticks until the callback runs
  * @param {boolean} loop Whether or not the code should loop or not
+ * @example setTickTimeout(() => {
+ * console.warn(`This was called after 20 ticks!`)
+ * }, 20)
  */
 export function setTickTimeout(callback, tick, loop = false) {
     let cT = 0

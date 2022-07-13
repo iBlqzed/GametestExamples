@@ -10,7 +10,7 @@ export class MessageForm {
      */
     constructor() {
         /**
-         * The actual form
+         * ...don't mind this
          */
         form = new MessageFormData()
         /**

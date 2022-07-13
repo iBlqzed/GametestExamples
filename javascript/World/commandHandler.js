@@ -8,6 +8,13 @@ export class Command {
      * Register a new command!
      * @param {{name: string,admin?: boolean,aliases?: string[]}} registerInfo Register info for the command
      * @param {(data: { player: Player, args: string[] }) => void} callback Code to run when the command is called for
+     * @example new Command({
+     * name: 'test',
+     * admin: true,
+     * aliases: ['test1','test2']
+     * }, data => {
+     * console.warn(data.player.name)
+     * })
      */
     constructor(registerInfo, callback) {
         Command.rC.push({

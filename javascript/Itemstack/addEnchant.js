@@ -5,6 +5,7 @@ import { ItemStack, ItemEnchantsComponent, Enchantment } from "mojang-minecraft"
  * @param {ItemStack} item Item to add the enchant on
  * @param {Enchantment} enchant Enchant to add to the item
  * @returns {boolean} Whether or not the enchantment was added successfully
+ * @example addEnchant(new ItemStack(Items.get('minecraft:diamond_sword')), new Enchantment(MinecraftEnchantmentTypes.sharpness, 5))
  */
 export function addEnchant(item, enchant) {
     /**

@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        // Module
+        "module": "ES2020",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        // Decaration Emission
+        "declaration": true,
+        "importHelpers": true,
+        "inlineSources": true,
+        "newLine": "lf",
+        "noEmitHelpers": true,
+        "preserveConstEnums": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        // ModuleType & Formatting
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "ESNext"
+        ],
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+        // Libs have broken typescript :shrug:
+        "skipLibCheck": true
+    },
+}

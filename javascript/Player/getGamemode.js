@@ -4,6 +4,7 @@ import { Entity, Player, world } from "mojang-minecraft"
  * Get the gamemode of a player
  * @param {Player} player Player to get the gamemode of
  * @returns {"survival" | "creative" | "adventure" | "unknown"} The gamemode of the player
+ * @example getGamemode(player) //Returns the gamemode of the player
  */
 export function getGamemode(player) {
     const sT = runCommand(`testfor @s[m=0]`, player).error
