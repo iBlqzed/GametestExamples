@@ -13,7 +13,7 @@ export function onPlayerJoin(callback) {
     world.events.tick.subscribe(() => {
         for (const pL of world.getPlayers()) if (!pNA.includes((pL.name))) { pNA.push(pL.name); callback(pL); }
     })
-    world.events.playerLeave.subscribe(({ playerName }) => pNA.splice(pNA.findIndex(pL => pL === playerName)))
+    world.events.playerLeave.subscribe(({ playerName }) => pNA.splice(pNA.findIndex(pL => pL === playerName), 1))
 }
 
 const pNA = []
