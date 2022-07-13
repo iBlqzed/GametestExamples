@@ -32,13 +32,13 @@ export function runCommands(commands: string[], executor?: Entity): { error: boo
     try {
         const cR = /^%/;
         if (cR.test(commands[0])) throw new TypeError('[Server] >> First command in runCommands function can not be conditional')
-        let cmdError = false
-        for (const cmd of commands) {
-            if (cmdError && cR.test(cmd)) continue
-            cmdError = runCommand(cmd.replace(cR, ''), executor).error
+        let cE = false
+        for (const cM of commands) {
+            if (cE && cR.test(cM)) continue
+            cE = runCommand(cM.replace(cR, ''), executor).error
         }
         return { error: false }
-    } catch (error) {
-        return { error: true };
+    } catch {
+        return { error: true }
     }
 }

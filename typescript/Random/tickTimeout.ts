@@ -14,9 +14,9 @@ export function setTickTimeout(callback: () => void, tick: number, loop?: boolea
     const tE = world.events.tick.subscribe((data) => {
         if (cT === 0) cT = data.currentTick + tick
         try {
-            if (cT > data.currentTick) {
+            if (cT <= data.currentTick) {
                 callback()
-                if (loop) cT = data.currentTick + tick
+                if (loop) cT += data.currentTick + tick
                 else world.events.tick.unsubscribe(tE)
             }
         } catch (e) {

@@ -14,7 +14,7 @@ export function setTickTimeout(callback, tick, loop = false) {
     const tE = world.events.tick.subscribe((data) => {
         if (cT === 0) cT = data.currentTick + tick
         try {
-            if (cT > data.currentTick) {
+            if (cT <= data.currentTick) {
                 callback()
                 if (loop) cT = data.currentTick + tick
                 else world.events.tick.unsubscribe(tE)
