@@ -9,10 +9,8 @@ import { Entity, world } from "mojang-minecraft";
  */
 export function runCommand(cmd: string, executor?: Entity): { error: boolean, data: any } {
     try {
-        let rV: any
-        if (executor) rV = executor.runCommand(cmd)
-        else rV = world.getDimension('overworld').runCommand(cmd)
-        return { error: false, data: rV }
+        if (executor) return { error: false, data: executor.runCommand(cmd) }
+        return { error: false, data: world.getDimension('overworld').runCommand(cmd) }
     } catch {
         return { error: true, data: undefined }
     }

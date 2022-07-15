@@ -6,7 +6,7 @@ import { Player } from "mojang-minecraft"
  * @param {boolean} useZero Whether or not to use 0 or NaN if error
  * @returns {number} The player's level
  */
-function getLevel(player, useZero = false) {
+export function getLevel(player, useZero = false) {
     try {
         const level = player.runCommand(`xp 0 @s`).level
         try { player.runCommand(`stopsound random.levelup`) } catch { }

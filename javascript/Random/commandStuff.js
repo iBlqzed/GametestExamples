@@ -7,12 +7,10 @@ import { Entity, world } from "mojang-minecraft";
  * @returns {{ error: boolean, data: any }} Whether or not the command errors, and command data
  * @example runCommand(`give @s diamond`, player)
  */
-export function runCommand(cmd, executor = null) {
+export function runCommand(cmd, executor = undefined) {
     try {
-        let rV
-        if (executor) rV = executor.runCommand(cmd)
-        else rV = world.getDimension('overworld').runCommand(cmd)
-        return { error: false, data: rV }
+        if (executor) return { error: false, data: executor.runCommand(cmd) }
+        return { error: false, data: world.getDimension('overworld').runCommand(cmd) }
     } catch {
         return { error: true, data: undefined }
     }

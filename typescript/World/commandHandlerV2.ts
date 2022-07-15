@@ -22,8 +22,8 @@ export class Command {
             description: commandInfo.description,
             aliases: commandInfo.aliases?.map(aL => aL.toLowerCase()),
             permissions: commandInfo.permissions ?? undefined,
-            callback: null,
-            arguments: null
+            callback: undefined,
+            arguments: undefined
         }
     }
     /**
@@ -54,23 +54,22 @@ const create = ['create', 'c', 'add', 'make'],
     invite = ['invite', 'inv', 'i']
 world.events.beforeChat.subscribe(data => {
     if (!data.message.startsWith(commandPrefix)) return
-    const start = Date.now()
     data.cancel = true
     const args = data.message.slice(commandPrefix.length).trim().split(/\s+/)
     const command = Command.registeredCommands.find(cmd => cmd.name === args[0] || cmd.aliases?.includes(args[0]))
     if (!command) return broadcastMessage(`§cInvalid command!`)
-    if (command.permissions.length && data.sender.getTags().filter(tag => command.permissions.includes(tag)).length !== command.permissions.length) return broadcastMessage(`§cYou do not have permission to run this command!`)
-    const sortedArgs = command.arguments?.sort((a, b) => a.index - b.index),
+    if (command.permissions?.length && data.sender.getTags().filter(tag => command.permissions?.includes(tag)).length !== command.permissions.length) return broadcastMessage(`§cYou do not have permission to run this command!`)
+    const sortedArgs = command.arguments?.sort((a, b) => a.index - b.index) ?? [],
         callbackArgs: { type: keyof argumentTypes, value: any }[] = []
     args.shift()
     let foundArg = true, argTest = 1, playerCheck = { value: '', check: false }, loopAmount = sortedArgs[sortedArgs.length - 1]?.index + 1, indexPlus = 0
     if (isNaN(loopAmount)) loopAmount = 0
     for (let i = 0; i < loopAmount; i++) {
-        const argsData = command.arguments.filter((arg) => arg.index === i)
+        const argsData = command.arguments?.filter((arg) => arg.index === i)
         const argValue = args[i + indexPlus] ?? undefined
-        if (argsData.find(value => value.type === 'player' || value.type === 'playerOnline')) playerCheck.check = true
-        if (argsData.length === 0) { if (argValue !== '' && argValue !== undefined) { callbackArgs.push({ type: 'any', value: argValue }) } }
-        else argsData.forEach(arg => {
+        if (argsData?.find(value => value.type === 'player' || value.type === 'playerOnline')) playerCheck.check = true
+        if (argsData?.length === 0) { if (argValue !== '' && argValue !== undefined) { callbackArgs.push({ type: 'any', value: argValue }) } }
+        else argsData?.forEach(arg => {
             if (arg.type === 'number') { if (Number(argValue)) callbackArgs.push({ type: 'number', value: Number(argValue) }) }
             if (arg.type === 'boolean') { if (argValue === 'true' || argValue === 'false') callbackArgs.push({ type: 'boolean', value: argValue === 'true' ? true : false }) }
             if (arg.type === 'create') { if (create.includes(argValue)) callbackArgs.push({ type: 'create', value: argValue }) }
@@ -110,7 +109,7 @@ world.events.beforeChat.subscribe(data => {
                     foundArg = false
                     break
                 }
-                if (argsData.find(arg => arg.type === 'playerOnline')) if ([...world.getPlayers()].find(plr => plr.name !== testValue)) {
+                if (argsData?.find(arg => arg.type === 'playerOnline')) if ([...world.getPlayers()].find(plr => plr.name !== testValue)) {
                     broadcastMessage('§cPlayer is not online', data.sender)
                     foundArg = false
                     break
@@ -128,9 +127,8 @@ world.events.beforeChat.subscribe(data => {
     }
     if (foundArg) {
         if (loopAmount < args.length) for (let i = 0; i < args.length - loopAmount; i++) callbackArgs.push({ type: 'any', value: args[i + loopAmount] })
-        command.callback(data.sender, callbackArgs)
+        command.callback && command.callback(data.sender, callbackArgs)
     }
-    console.warn(`Command was ran in ${Date.now() - start}ms`)
 })
 
 interface argumentTypes {

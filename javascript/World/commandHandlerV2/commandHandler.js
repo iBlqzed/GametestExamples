@@ -50,7 +50,6 @@ const create = ['create', 'c', 'add', 'make'], remove = ['remove', 'delete', 'r'
 world.events.beforeChat.subscribe(data => {
     if (!data.message.startsWith(commandPrefix))
         return;
-    const start = Date.now();
     data.cancel = true;
     const args = data.message.slice(commandPrefix.length).trim().split(/\s+/);
     const command = Command.registeredCommands.find(cmd => cmd.name === args[0] || cmd.aliases?.includes(args[0]));
@@ -141,9 +140,11 @@ world.events.beforeChat.subscribe(data => {
                         break;
                     }
                 callbackArgs.push({ type: 'player', value: testValue });
-                testValue.split("").forEach(letter => { if (letter === ' ') {
-                    indexPlus++;
-                } });
+                testValue.split("").forEach(letter => {
+                    if (letter === ' ') {
+                        indexPlus++;
+                    }
+                });
             }
             else {
                 foundArg = false;
@@ -159,7 +160,6 @@ world.events.beforeChat.subscribe(data => {
                 callbackArgs.push({ type: 'any', value: args[i + loopAmount] });
         command.callback(data.sender, callbackArgs);
     }
-    console.warn(`Command was ran in ${Date.now() - start}ms`);
 });
 /**
  * Broadcast a message (or send it to a player)
